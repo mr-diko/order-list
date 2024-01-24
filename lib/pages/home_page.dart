@@ -37,6 +37,8 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     MaterialButton(
+                      color: Colors.blue,
+                      textColor: Colors.white,
                       onPressed: () {
                         Clipboard.setData(ClipboardData(text: message));
                       },
