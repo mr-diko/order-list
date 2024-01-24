@@ -70,7 +70,29 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        drawer: Drawer(),
+        drawer: Drawer(
+          backgroundColor: Colors.blue[200],
+          child: ListView(
+            children: const [
+              DrawerHeader(
+                child: Center(
+                  child: Text(
+                    'Закупка',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.list),
+                title: Text('Список'),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Налаштування списку'),
+              ),
+            ],
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
           onPressed: showFilledFilds,
