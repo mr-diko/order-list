@@ -63,19 +63,20 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: const Text(
+            "Закупка",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        drawer: Drawer(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
           onPressed: showFilledFilds,
           child: const Icon(
             Icons.copy,
             color: Colors.white,
-          ),
-        ),
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text(
-            "Закупка",
-            style: TextStyle(color: Colors.white),
           ),
         ),
         body: ListView.builder(
