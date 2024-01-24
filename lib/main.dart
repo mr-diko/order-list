@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:purchase_order_app/pages/home_page.dart';
+import 'package:purchase_order_app/pages/list_page.dart';
+import 'package:purchase_order_app/pages/list_setitngs_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const ListPage(),
+      routes: {
+        '/listpage': (context) => const ListPage(),
+        '/settingspage': (context) => const SettingsPage(),
+      },
     );
   }
 }

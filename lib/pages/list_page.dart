@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchase_order_app/util/products_tile.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ListPage extends StatefulWidget {
+  const ListPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ListPage> createState() => _ListPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ListPageState extends State<ListPage> {
   List<String> productsList = [
     "Криветка",
     "Лосось",
@@ -72,23 +72,29 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: Drawer(
           backgroundColor: Colors.blue[200],
-          child: ListView(
-            children: const [
-              DrawerHeader(
-                child: Center(
-                  child: Text(
-                    'Закупка',
-                    style: TextStyle(color: Colors.white),
-                  ),
+          child: Column(
+            children: [
+              const DrawerHeader(
+                child: Icon(
+                  Icons.favorite,
+                  size: 48,
                 ),
               ),
               ListTile(
                 leading: Icon(Icons.list),
-                title: Text('Список'),
+                title: Text('Список закупки'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/listpage');
+                },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Налаштування списку'),
+                leading: Icon(Icons.list),
+                title: Text('Налаштуання списку'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/settingspage');
+                },
               ),
             ],
           ),
