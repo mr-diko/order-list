@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:purchase_order_app/util/products_tile.dart';
+import 'package:purchase_order_app/data/database.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -10,14 +11,6 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  List<String> productsList = [
-    "Криветка",
-    "Лосось",
-    "Вугор",
-    "Авокадо",
-    "Майонез",
-    "Огірки"
-  ];
   final List<TextEditingController> _controllers = [];
 
   showFilledFilds() {
@@ -89,7 +82,7 @@ class _ListPageState extends State<ListPage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.list),
+                leading: Icon(Icons.edit),
                 title: Text('Налаштуання списку'),
                 onTap: () {
                   Navigator.pop(context);
