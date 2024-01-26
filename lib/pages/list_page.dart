@@ -49,8 +49,8 @@ class _ListPageState extends State<ListPage> {
   void dispose() {
     for (var element in _controllers) {
       element.dispose();
-      super.dispose();
     }
+    super.dispose();
   }
 
   @override
