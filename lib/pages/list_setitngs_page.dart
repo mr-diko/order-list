@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.blue[200],
                 borderRadius: BorderRadius.circular(12),
@@ -27,7 +27,7 @@ class SettingsPage extends StatelessWidget {
               child: Row(
                 children: [
                   Text(productsList[1]),
-                  Spacer(),
+                  const Spacer(),
                   const IconButton(
                     onPressed: null,
                     icon: Icon(

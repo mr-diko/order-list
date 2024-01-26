@@ -74,16 +74,16 @@ class _ListPageState extends State<ListPage> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.list),
-                title: Text('Список закупки'),
+                leading: const Icon(Icons.list),
+                title: const Text('Список закупки'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/listpage');
                 },
               ),
               ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Налаштуання списку'),
+                leading: const Icon(Icons.edit),
+                title: const Text('Налаштуання списку'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/settingspage');
