@@ -3,12 +3,12 @@ import 'package:purchase_order_app/pages/list_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
-  runApp(const MyApp());
-
   //init the hive
   await Hive.initFlutter();
 
-  var box = await Hive.openBox('myBox');
+  await Hive.openBox('myBox');
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
