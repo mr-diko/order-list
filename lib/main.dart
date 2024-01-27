@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:purchase_order_app/pages/list_page.dart';
-import 'package:purchase_order_app/pages/list_setitngs_page.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+
+  //init the hive
+  await Hive.initFlutter();
+
+  var box = await Hive.openBox('myBox');
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +26,6 @@ class MyApp extends StatelessWidget {
       home: const ListPage(),
       routes: {
         '/listpage': (context) => const ListPage(),
-        '/settingspage': (context) => const SettingsPage(),
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:purchase_order_app/util/products_tile.dart';
 import 'package:purchase_order_app/data/database.dart';
 
@@ -11,13 +12,27 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
+  final _myBox = Hive.box('myBox');
+  OrderListDB db = OrderListDB();
+
   final List<TextEditingController> _controllers = [];
+
+  @override
+  void initState() {
+    if (_myBox.get('ORDERLIST') == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+
+    super.initState();
+  }
 
   showFilledFilds() {
     String message = "";
-    for (var i = 0; i < productsList.length; i++) {
+    for (var i = 0; i < db.productsList.length; i++) {
       if (_controllers[i].text.isNotEmpty) {
-        message += "${productsList[i]}:${_controllers[i].text};\n";
+        message += "${db.productsList[i]}:${_controllers[i].text};\n";
       }
     }
     showDialog(
@@ -81,14 +96,6 @@ class _ListPageState extends State<ListPage> {
                   Navigator.pushNamed(context, '/listpage');
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text('Налаштуання списку'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/settingspage');
-                },
-              ),
             ],
           ),
         ),
@@ -101,12 +108,12 @@ class _ListPageState extends State<ListPage> {
           ),
         ),
         body: ListView.builder(
-          itemCount: productsList.length,
+          itemCount: db.productsList.length,
           itemBuilder: (context, index) {
             _controllers.add(TextEditingController());
             return ProductsTile(
               controller: _controllers[index],
-              productName: productsList[index],
+              productName: db.productsList[index],
             );
           },
         ));
