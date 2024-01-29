@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:purchase_order_app/util/products_tile.dart';
 import 'package:purchase_order_app/data/database.dart';
+import 'package:purchase_order_app/util/dialog_box.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -16,6 +17,7 @@ class _ListPageState extends State<ListPage> {
   OrderListDB db = OrderListDB();
 
   final List<TextEditingController> _controllers = [];
+  final _addNewItemController = TextEditingController();
 
   void deleteProduct(int index) {
     setState(() {
@@ -25,6 +27,23 @@ class _ListPageState extends State<ListPage> {
   }
 
   void editProduct() {}
+
+  void saveNewItem() {}
+
+  void addNewItem() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          controller: _addNewItemController,
+          onSave: saveNewItem,
+          onCancel: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
+    );
+  }
 
   @override
   void initState() {
@@ -80,32 +99,49 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text(
-            "Закупка",
-            style: TextStyle(color: Colors.white),
+      appBar: AppBar(
+        title: const Text(
+          "Закупка",
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: showFilledFilds,
+        child: const Icon(
+          Icons.copy,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        shape: const CircularNotchedRectangle(),
+        child: IconTheme(
+          data: const IconThemeData(color: Colors.white, size: 35.0),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: addNewItem,
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              )
+            ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue,
-          onPressed: showFilledFilds,
-          child: const Icon(
-            Icons.copy,
-            color: Colors.white,
-          ),
-        ),
-        body: ListView.builder(
-          itemCount: db.productsList.length,
-          itemBuilder: (context, index) {
-            _controllers.add(TextEditingController());
-            return ProductsTile(
-              controller: _controllers[index],
-              productName: db.productsList[index],
-              deleteProduct: (context) => deleteProduct(index),
-              editFunction: (context) => editProduct(),
-            );
-          },
-        ));
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.only(bottom: 88),
+        itemCount: db.productsList.length,
+        itemBuilder: (context, index) {
+          _controllers.add(TextEditingController());
+          return ProductsTile(
+            controller: _controllers[index],
+            productName: db.productsList[index],
+            deleteProduct: (context) => deleteProduct(index),
+            editFunction: (context) => editProduct(),
+          );
+        },
+      ),
+    );
   }
 }

@@ -38,13 +38,11 @@ class ProductsTile extends StatelessWidget {
             ),
           ],
         ),
-        child: Container(
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              labelText: productName,
-            ),
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            labelText: productName,
           ),
         ),
       ),
