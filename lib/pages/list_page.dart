@@ -17,6 +17,15 @@ class _ListPageState extends State<ListPage> {
 
   final List<TextEditingController> _controllers = [];
 
+  void deleteProduct(int index) {
+    setState(() {
+      db.productsList.removeAt(index);
+    });
+    db.updateDatabase();
+  }
+
+  void editProduct() {}
+
   @override
   void initState() {
     if (_myBox.get('ORDERLIST') == null) {
@@ -93,6 +102,8 @@ class _ListPageState extends State<ListPage> {
             return ProductsTile(
               controller: _controllers[index],
               productName: db.productsList[index],
+              deleteProduct: (context) => deleteProduct(index),
+              editFunction: (context) => editProduct(),
             );
           },
         ));
