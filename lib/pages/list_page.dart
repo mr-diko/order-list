@@ -78,27 +78,6 @@ class _ListPageState extends State<ListPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.blue[200],
-          child: Column(
-            children: [
-              const DrawerHeader(
-                child: Icon(
-                  Icons.favorite,
-                  size: 48,
-                ),
-              ),
-              ListTile(
-                leading: const Icon(Icons.list),
-                title: const Text('Список закупки'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/listpage');
-                },
-              ),
-            ],
-          ),
-        ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
           onPressed: showFilledFilds,
