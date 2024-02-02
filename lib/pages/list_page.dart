@@ -17,7 +17,7 @@ class _ListPageState extends State<ListPage> {
   OrderListDB db = OrderListDB();
 
   final List<TextEditingController> _controllers = [];
-  final _addNewItemController = TextEditingController();
+  final _itemcontroller = TextEditingController();
 
   void deleteProduct(int index) {
     setState(() {
@@ -26,12 +26,38 @@ class _ListPageState extends State<ListPage> {
     db.updateDatabase();
   }
 
-  void editProduct() {}
+  void editProduct(int index) {
+    String itemName = db.productsList[index];
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          text: itemName,
+          controller: _itemcontroller,
+          onSave: () {
+            saveItem(index);
+          },
+          onCancel: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
+    );
+  }
+
+  void saveItem(int index) {
+    setState(() {
+      db.productsList[index] = _itemcontroller.text;
+      _itemcontroller.clear();
+    });
+    Navigator.of(context).pop();
+    db.updateDatabase();
+  }
 
   void saveNewItem() {
     setState(() {
-      db.productsList.add(_addNewItemController.text);
-      _addNewItemController.clear();
+      db.productsList.add(_itemcontroller.text);
+      _itemcontroller.clear();
     });
     Navigator.of(context).pop();
     db.updateDatabase();
@@ -42,7 +68,8 @@ class _ListPageState extends State<ListPage> {
       context: context,
       builder: (context) {
         return DialogBox(
-          controller: _addNewItemController,
+          text: 'Введіть назву продукту',
+          controller: _itemcontroller,
           onSave: saveNewItem,
           onCancel: () {
             Navigator.of(context).pop();
@@ -145,7 +172,7 @@ class _ListPageState extends State<ListPage> {
             controller: _controllers[index],
             productName: db.productsList[index],
             deleteProduct: (context) => deleteProduct(index),
-            editFunction: (context) => editProduct(),
+            editFunction: (context) => editProduct(index),
           );
         },
       ),

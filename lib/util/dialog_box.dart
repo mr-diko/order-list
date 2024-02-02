@@ -3,11 +3,13 @@ import 'package:purchase_order_app/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
+  final String text;
   VoidCallback onSave;
   VoidCallback onCancel;
 
   DialogBox({
     super.key,
+    required this.text,
     required this.controller,
     required this.onSave,
     required this.onCancel,
@@ -23,9 +25,9 @@ class DialogBox extends StatelessWidget {
           children: [
             TextField(
               controller: controller,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Назва нового продукту",
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: text,
               ),
             ),
             Row(
