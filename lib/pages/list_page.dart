@@ -28,7 +28,14 @@ class _ListPageState extends State<ListPage> {
 
   void editProduct() {}
 
-  void saveNewItem() {}
+  void saveNewItem() {
+    setState(() {
+      db.productsList.add(_addNewItemController.text);
+      _addNewItemController.clear();
+    });
+    Navigator.of(context).pop();
+    db.updateDatabase();
+  }
 
   void addNewItem() {
     showDialog(
