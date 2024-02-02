@@ -25,12 +25,14 @@ class ProductsTile extends StatelessWidget {
           motion: const BehindMotion(),
           children: [
             SlidableAction(
+              borderRadius: BorderRadius.circular(20),
               onPressed: deleteProduct,
               backgroundColor: Colors.red,
               icon: Icons.delete,
               label: 'Delete',
             ),
             SlidableAction(
+              borderRadius: BorderRadius.circular(20),
               onPressed: editFunction,
               backgroundColor: Colors.yellow,
               icon: Icons.edit,
