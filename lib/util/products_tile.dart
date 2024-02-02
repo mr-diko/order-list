@@ -6,8 +6,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ProductsTile extends StatelessWidget {
   final String productName;
   final TextEditingController controller;
-  Function(BuildContext)? deleteProduct;
-  Function(BuildContext)? editFunction;
+  final Function(BuildContext)? deleteProduct;
+  final Function(BuildContext)? editFunction;
   ProductsTile({
     super.key,
     required this.productName,

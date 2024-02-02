@@ -4,10 +4,10 @@ import 'package:purchase_order_app/util/my_button.dart';
 class DialogBox extends StatelessWidget {
   final TextEditingController controller;
   final String text;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
 
-  DialogBox({
+  const DialogBox({
     super.key,
     required this.text,
     required this.controller,
